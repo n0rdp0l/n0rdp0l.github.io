@@ -1,0 +1,36 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  headerTitle?: string;
+  headerSubtitle?: string;
+  headerDescription?: string;
+  navVariant?: 'home' | 'page';
+  transitionName?: string;
+}
+
+const {
+  title,
+  headerTitle,
+  headerSubtitle,
+  headerDescription,
+  navVariant = 'page',
+  transitionName,
+} = Astro.props;
+---
+
+<BaseLayout title={title}>
+  <Header
+    title={headerTitle}
+    subtitle={headerSubtitle}
+    description={headerDescription}
+    transitionName={transitionName}
+  />
+  <slot />
+  <Nav variant={navVariant} />
+  <Footer />
+</BaseLayout>

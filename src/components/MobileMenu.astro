@@ -1,0 +1,208 @@
+---
+---
+
+<button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle menu">
+  <span class="hamburger"></span>
+  <span class="hamburger"></span>
+  <span class="hamburger"></span>
+</button>
+
+<nav id="mobile-menu" class="mobile-menu">
+  <div class="mobile-menu-content">
+    <a href="/" class="mobile-menu-item">
+      <img src="/gifs/home.gif" alt="Home" />
+      <span>Home</span>
+    </a>
+    <a href="/blog/" class="mobile-menu-item">
+      <img src="/gifs/sn_read.gif" alt="Blog" />
+      <span>Blog</span>
+    </a>
+    <a href="/cv/" class="mobile-menu-item">
+      <img src="/gifs/diplom001.gif" alt="CV" />
+      <span>Curriculum Vitae</span>
+    </a>
+    <a href="/about/" class="mobile-menu-item">
+      <img src="/gifs/indexMenuMail.gif" alt="Contact" />
+      <span>Contact</span>
+    </a>
+  </div>
+</nav>
+
+<script>
+  function setupMobileMenu() {
+    const toggle = document.getElementById('mobile-menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+
+    function toggleMenu() {
+      const isOpen = toggle?.classList.contains('active');
+
+      if (isOpen) {
+        toggle?.classList.remove('active');
+        menu?.classList.remove('active');
+        document.body.style.overflow = '';
+      } else {
+        toggle?.classList.add('active');
+        menu?.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeMenu() {
+      toggle?.classList.remove('active');
+      menu?.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    toggle?.addEventListener('click', toggleMenu);
+
+    menu?.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    menu?.addEventListener('click', (e) => {
+      if (e.target === menu) {
+        closeMenu();
+      }
+    });
+  }
+
+  document.addEventListener('astro:page-load', setupMobileMenu);
+
+  document.addEventListener('astro:after-swap', () => {
+    const toggle = document.getElementById('mobile-menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    toggle?.classList.remove('active');
+    menu?.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+</script>
+
+<style>
+  .mobile-menu-toggle {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+    background: var(--purple-text);
+    border: 2px solid var(--black);
+    border-radius: 4px;
+    width: 50px;
+    height: 50px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.3s;
+  }
+
+  .mobile-menu-toggle:hover {
+    background: var(--gold);
+  }
+
+  .hamburger {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--white);
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  .mobile-menu-toggle.active .hamburger:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+
+  .mobile-menu-toggle.active .hamburger:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-menu-toggle.active .hamburger:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+
+  .mobile-menu.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .mobile-menu-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100%;
+    background: var(--bg-container);
+    border-right: var(--border);
+    padding: 80px 20px 20px;
+    transform: translateX(-100%);
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .mobile-menu.active .mobile-menu-content {
+    transform: translateX(0);
+  }
+
+  .mobile-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--nav-bg);
+    border: var(--border);
+    text-decoration: none;
+    color: var(--text-main);
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .mobile-menu-item:hover {
+    background: var(--purple-text);
+    color: var(--white);
+  }
+
+  .mobile-menu-item img {
+    width: 30px;
+    height: auto;
+  }
+
+  @media (max-width: 800px) {
+    .mobile-menu-toggle,
+    .mobile-menu {
+      display: flex;
+    }
+
+    /* Hide desktop nav on mobile */
+    .nav:not(.nav-post) {
+      display: none !important;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-menu,
+    .mobile-menu-content,
+    .hamburger,
+    .mobile-menu-toggle {
+      transition: none;
+    }
+  }
+</style>

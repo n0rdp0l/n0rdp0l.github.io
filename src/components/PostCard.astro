@@ -1,0 +1,29 @@
+---
+import TagBadge from './TagBadge.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  slug: string;
+  tags?: string[];
+}
+
+const { title, description, pubDate, slug, tags = [] } = Astro.props;
+const dateStr = pubDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<div class="post-card">
+  <h3><a href={`/blog/${slug}/`} transition:name={`post-title-${slug}`}>{title}</a></h3>
+  <div class="post-date">{dateStr}</div>
+  <div class="post-description">{description}</div>
+  {tags.length > 0 && (
+    <div class="post-tags">
+      {tags.map((tag) => <TagBadge tag={tag} />)}
+    </div>
+  )}
+</div>
