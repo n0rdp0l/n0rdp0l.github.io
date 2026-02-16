@@ -1,0 +1,42 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const postsByYear = new Map<number, typeof posts>();
+for (const post of posts) {
+  const year = post.data.pubDate.getFullYear();
+  if (!postsByYear.has(year)) postsByYear.set(year, []);
+  postsByYear.get(year)!.push(post);
+}
+
+const years = [...postsByYear.keys()].sort((a, b) => b - a);
+---
+
+<PageLayout
+  title="Archives | n0rdp0l"
+  headerTitle="Blog"
+  headerSubtitle="Exploring the Latent Space"
+  headerDescription="All posts by year"
+>
+  <div class="page-content">
+    {years.map((year) => (
+      <>
+        <h2 class="archive-year">{year}</h2>
+        <ul class="archive-list">
+          {postsByYear.get(year)!.map((post) => (
+            <li>
+              <span class="archive-date">
+                {post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+              </span>
+              <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+            </li>
+          ))}
+        </ul>
+      </>
+    ))}
+  </div>
+</PageLayout>

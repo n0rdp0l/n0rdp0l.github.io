@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="404 | n0rdp0l">
+  <Header
+    title="404"
+    subtitle="Page Not Found"
+    description="This page is still under construction"
+  />
+  <div class="main">
+    <img src="/gifs/thispageisunderconstruction.GIF" alt="Under Construction" style="max-width: 300px;" />
+    <h3>Nothing here yet</h3>
+    <p>The page you're looking for doesn't exist.</p>
+  </div>
+  <Nav variant="page" />
+  <Footer />
+</BaseLayout>

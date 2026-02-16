@@ -1,0 +1,45 @@
+---
+---
+
+<div id="reading-progress" class="reading-progress"></div>
+
+<script>
+  function updateProgress() {
+    const progressBar = document.getElementById('reading-progress');
+    if (!progressBar) return;
+
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    const scrollTop = window.scrollY;
+    const trackLength = documentHeight - windowHeight;
+    const percentScrolled = (scrollTop / trackLength) * 100;
+
+    progressBar.style.width = `${Math.min(percentScrolled, 100)}%`;
+  }
+
+  function setupReadingProgress() {
+    updateProgress();
+    window.addEventListener('scroll', updateProgress);
+  }
+
+  document.addEventListener('astro:page-load', setupReadingProgress);
+</script>
+
+<style>
+  .reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--purple-mid), var(--gold));
+    width: 0%;
+    z-index: 999;
+    transition: width 0.1s ease-out;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reading-progress {
+      transition: none;
+    }
+  }
+</style>

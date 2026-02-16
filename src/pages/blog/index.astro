@@ -1,0 +1,29 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<PageLayout
+  title="Blog | n0rdp0l"
+  headerTitle="Blog"
+  headerSubtitle="Exploring the Latent Space"
+  headerDescription={`"What is essential is invisible to the eye." — Antoine de Saint-Exupéry`}
+  transitionName="blog-title"
+>
+  <div class="page-content">
+    {posts.map((post) => (
+      <PostCard
+        title={post.data.title}
+        description={post.data.description}
+        pubDate={post.data.pubDate}
+        slug={post.id}
+        tags={post.data.tags}
+      />
+    ))}
+  </div>
+</PageLayout>

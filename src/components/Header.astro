@@ -1,0 +1,21 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  transitionName?: string;
+}
+
+const {
+  title = 'n0rdp0l',
+  subtitle = '',
+  description = 'really good science and technology',
+  transitionName,
+} = Astro.props;
+---
+
+<div class="header">
+  <h1 transition:name={transitionName}>{title}</h1>
+  {subtitle && <h2 class="gold">{subtitle}</h2>}
+  <p>{description}</p>
+</div>

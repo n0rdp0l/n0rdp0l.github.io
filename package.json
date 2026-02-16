@@ -1,0 +1,26 @@
+{
+  "name": "n0rdp0l.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/n0rdp0l/n0rdp0l.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/n0rdp0l/n0rdp0l.github.io/issues"
+  },
+  "homepage": "https://github.com/n0rdp0l/n0rdp0l.github.io#readme",
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.0",
+    "astro": "^5.17.2"
+  }
+}

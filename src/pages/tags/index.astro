@@ -1,0 +1,29 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).filter((p) => !p.data.draft);
+const tagCounts = new Map<string, number>();
+
+for (const post of posts) {
+  for (const tag of post.data.tags) {
+    tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+  }
+}
+
+const sortedTags = [...tagCounts.entries()].sort((a, b) => b[1] - a[1]);
+---
+
+<PageLayout
+  title="Tags | n0rdp0l"
+  headerTitle="Blog"
+  headerSubtitle="Exploring the Latent Space"
+  headerDescription="All tags"
+>
+  <h2 class="page-title">Tags</h2>
+  <div class="tags-cloud">
+    {sortedTags.map(([tag, count]) => (
+      <a class="tag-badge" href={`/tags/${tag}/`}>{tag} ({count})</a>
+    ))}
+  </div>
+</PageLayout>

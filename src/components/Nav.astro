@@ -1,0 +1,39 @@
+---
+interface Props {
+  variant?: 'home' | 'page' | 'post';
+}
+
+const { variant = 'home' } = Astro.props;
+---
+
+{variant === 'home' ? (
+  <div class="nav">
+    <img src="/gifs/sn_read.gif" alt="Blog" />
+    <a href="/blog/">Blog</a>
+    <img src="/gifs/diplom001.gif" alt="CV" />
+    <a href="/cv/">Curriculum<br />Vitae</a>
+    <img src="/gifs/indexMenuMail.gif" alt="Contact" />
+    <a href="/about/">Contact</a>
+  </div>
+) : variant === 'post' ? (
+  <div class="nav nav-post">
+    <div class="nav-item">
+      <a href="/">
+        <img src="/gifs/home.gif" alt="Home" />
+        <span>Home</span>
+      </a>
+    </div>
+    <div class="nav-item">
+      <a href="/blog/">
+        <img src="/gifs/links1.gif" alt="Back to Blog" />
+        <span>Back to Blog</span>
+      </a>
+    </div>
+  </div>
+) : (
+  <div class="nav nav-home">
+    <a href="/">
+      <img src="/gifs/home.gif" alt="Home" />
+    </a>
+  </div>
+)}
