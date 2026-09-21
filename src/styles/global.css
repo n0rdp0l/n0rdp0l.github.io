@@ -6,7 +6,10 @@
 
 :root {
   --berg: url('/gifs/NicePng_iceberg.png');
-  --berg-size: auto max(180vh, 1100px);
+  /* Frame-wide so the berg hides behind the page and peeks out above and
+     below it, but never shorter than the viewport (70vh wide is ~110vh
+     tall), or the scroll would move it the wrong way. */
+  --berg-size: max(min(var(--measure-frame), 100vw), 70vh) auto;
   --berg-pos: center calc(var(--depth, 0) * 100%);
   --veil-wash: color-mix(in srgb, var(--surface) calc(100% - var(--veil) * 100%), transparent);
 }
@@ -43,6 +46,27 @@ body {
     linear-gradient(var(--veil-wash), var(--veil-wash)),
     var(--berg) var(--berg-pos) / var(--berg-size) no-repeat fixed,
     var(--surface);
+}
+
+/* ---- Shell well --------------------------------------------------
+   A quiet prompt on the page's own ground, for short commands.
+   Long listings and real code go in .n0-term. */
+
+.shell {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ink);
+  background: var(--surface-sunken);
+  border: var(--border-hair) solid var(--line);
+  padding: var(--space-5);
+  margin: 0;
+  overflow-x: auto;
+}
+
+.shell__prompt {
+  color: var(--accent);
+  font-weight: 700;
 }
 
 /* ---- Page content ------------------------------------------------ */
@@ -178,17 +202,6 @@ body {
 
 /* ---- Ornaments ---------------------------------------------------- */
 
-.plate-row {
-  display: flex;
-  justify-content: center;
-  padding: var(--space-5);
-}
-
-.plate-row .n0-plate img {
-  max-width: 100%;
-  height: auto;
-}
-
 figure.n0-plate {
   margin: 0;
 }
@@ -208,6 +221,16 @@ figure.n0-plate {
   .n0-frame {
     border-left: 0;
     border-right: 0;
+  }
+
+  .n0-strip {
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-3);
+  }
+
+  /* Clear the fixed theme toggle. */
+  .n0-band {
+    padding-inline: 56px;
   }
 
   .n0-band h1 {

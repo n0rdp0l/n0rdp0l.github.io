@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 ---
 
@@ -8,47 +9,21 @@ import Footer from '../components/Footer.astro';
     <h1 class="whoami-path">~/n0rdp0l</h1>
   </div>
 
-  <div class="plate-row">
-    <figure class="n0-plate">
-      <img src="/gifs/construction.gif" alt="Under Construction" width="574" height="51" />
-    </figure>
-  </div>
+  <Nav />
 
-  <div class="terminal-body">
-    <div class="n0-term">
-      <pre><span class="n0-term__prompt">$</span> whoami
+  <div class="home">
+    <pre class="shell"><span class="shell__prompt">$</span> whoami
 n0rdp0l</pre>
-    </div>
 
-    <div class="intro-text">
-      <p>Hey, I'm Felix :) Welcome to my website! </p>
-      <p>My formal  background is in Econometrics, Statistics & Data Science</p>
-    </div>
+    <p>Hey, I'm Felix :) Welcome to my website!</p>
+    <p>My formal background is in Econometrics, Statistics & Data Science</p>
 
-    <div class="n0-term">
-      <pre><span class="n0-term__prompt">$</span> ls -1a interests/
+    <pre class="shell"><span class="shell__prompt">$</span> ls -1a interests/
 .privacy_and_security
 decentralised-networks
 selfhosting
 arch-linux
-hyprland
-<span class="n0-term__prompt">$</span><span class="cursor">_</span></pre>
-    </div>
-  </div>
-
-  <div class="n0-strip">
-    <a href="/blog/">
-      <img src="/gifs/sn_read.gif" alt="" />
-      <span transition:name="blog-title">Blog</span>
-    </a>
-    <a href="/cv/">
-      <img src="/gifs/diplom001.gif" alt="" />
-      <span transition:name="cv-title">Curriculum Vitae</span>
-    </a>
-    <a href="/about/">
-      <img src="/gifs/indexMenuMail.gif" alt="" />
-      <span transition:name="contact-title">Contact</span>
-    </a>
+hyprland</pre>
   </div>
 
   <Footer />
@@ -57,64 +32,16 @@ hyprland
 <style>
   .whoami-path {
     font-family: var(--font-data);
-    font-size: clamp(1.5rem, 4vw, 2rem);
-    padding: var(--space-5);
   }
 
-  .terminal-body {
-    padding: 0 var(--space-7) var(--space-7);
+  .home {
+    padding: var(--space-7) var(--space-5);
   }
 
-  .terminal-body > .n0-term:first-child {
-    margin-top: var(--space-3);
-  }
-
-  .intro-text {
-    margin: var(--space-7) 0;
-  }
-
-  .intro-text p {
-    margin: var(--space-3) 0;
+  .home p {
+    font-size: 14px;
+    line-height: 1.6;
     color: var(--ink);
-    line-height: 1.8;
-  }
-
-  .n0-strip a {
-    display: flex;
-    align-items: center;
-    gap: var(--space-4);
-  }
-
-  .n0-strip img {
-    height: 50px;
-  }
-
-  .cursor {
-    animation: blink 1s infinite;
-  }
-
-  @keyframes blink {
-    0%, 49% { opacity: 1; }
-    50%, 100% { opacity: 0; }
-  }
-
-  @media (max-width: 800px) {
-    .terminal-body {
-      padding: 0 var(--space-5) var(--space-5);
-    }
-
-    .n0-term pre {
-      font-size: 12px;
-    }
-
-    .n0-strip a {
-      flex-direction: column;
-      gap: var(--space-2);
-      text-align: center;
-    }
-
-    .n0-strip img {
-      height: 40px;
-    }
+    margin: var(--space-5) 0;
   }
 </style>

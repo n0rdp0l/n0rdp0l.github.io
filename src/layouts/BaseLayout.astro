@@ -2,7 +2,6 @@
 import { ViewTransitions } from 'astro:transitions';
 import ThemeInit from '../components/ThemeInit.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
-import MobileMenu from '../components/MobileMenu.astro';
 import Iceberg from '../components/Iceberg.astro';
 
 interface Props {
@@ -28,7 +27,6 @@ const { title } = Astro.props;
 <body class="n0-root">
   <Iceberg />
   <ThemeToggle />
-  <MobileMenu />
   <div class="n0-frame n0-frame--bleed">
     <slot />
   </div>
