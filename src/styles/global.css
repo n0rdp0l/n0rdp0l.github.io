@@ -48,6 +48,15 @@ body {
     var(--surface);
 }
 
+/* ---- Banner ------------------------------------------------------
+   The binaries GIF runs behind the masthead, blended into it. */
+
+.n0-band {
+  background: var(--masthead) url('/gifs/binaries.gif');
+  background-size: auto 33%;
+  background-blend-mode: overlay;
+}
+
 /* ---- Shell well --------------------------------------------------
    A quiet prompt on the page's own ground, for short commands.
    Long listings and real code go in .n0-term. */
@@ -133,16 +142,22 @@ body {
   color: var(--ink-dim);
 }
 
-/* Astro's fenced code blocks, dressed as the terminal. */
-.n0-prose pre {
-  background: var(--code-surface) !important;
-  color: var(--code-ink);
-  border: var(--border-hard) solid var(--rule);
+/* Astro's fenced code blocks, as the same shell well the home page
+   uses. Shiki emits both themes; the Polar Night one is swapped in by
+   data-theme (see markdown.shikiConfig in astro.config.mjs). */
+.n0-prose pre.astro-code {
+  background: var(--surface-sunken) !important;
+  border: var(--border-hair) solid var(--line);
   padding: var(--space-5);
   overflow-x: auto;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.7;
   margin: var(--space-7) 0;
+}
+
+[data-theme="crt"] .astro-code,
+[data-theme="crt"] .astro-code span {
+  color: var(--shiki-dark) !important;
 }
 
 .n0-prose pre code {
@@ -201,6 +216,17 @@ body {
 }
 
 /* ---- Ornaments ---------------------------------------------------- */
+
+.plate-row {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-5);
+}
+
+.plate-row .n0-plate img {
+  max-width: 100%;
+  height: auto;
+}
 
 figure.n0-plate {
   margin: 0;

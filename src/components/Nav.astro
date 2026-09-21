@@ -1,15 +1,38 @@
 ---
-// The strip under the band. Home drops its own link; every other page
-// leads with it. The section the page belongs to is marked current.
+interface Props {
+  variant?: 'home' | 'page' | 'post';
+}
+
+const { variant = 'home' } = Astro.props;
 const path = Astro.url.pathname;
-const isHome = path === '/';
-const section = (prefixes: string[]) =>
-  prefixes.some((p) => path.startsWith(p)) ? 'page' : undefined;
+const current = (href: string) => (path === href ? 'page' : undefined);
 ---
 
-<nav class="n0-strip">
-  {!isHome && <a href="/">Home</a>}
-  <a href="/blog/" aria-current={section(['/blog/', '/tags/', '/archives/'])}>Blog</a>
-  <a href="/cv/" aria-current={section(['/cv/'])}>Curriculum Vitae</a>
-  <a href="/about/" aria-current={section(['/about/'])}>Contact</a>
-</nav>
+{variant === 'home' ? (
+  <div class="n0-strip">
+    <img src="/gifs/sn_read.gif" alt="" />
+    <a href="/blog/" aria-current={current('/blog/')}>Blog</a>
+    <img src="/gifs/diplom001.gif" alt="" />
+    <a href="/cv/" aria-current={current('/cv/')}>Curriculum<br />Vitae</a>
+    <img src="/gifs/indexMenuMail.gif" alt="" />
+    <a href="/about/" aria-current={current('/about/')}>Contact</a>
+  </div>
+) : variant === 'post' ? (
+  <div class="n0-strip n0-strip--post">
+    <a href="/">
+      <img src="/gifs/home.gif" alt="" />
+      <span>Home</span>
+    </a>
+    <a href="/blog/">
+      <img src="/gifs/back.gif" alt="" />
+      <span>Back to Blog</span>
+    </a>
+  </div>
+) : (
+  <div class="n0-strip n0-strip--post">
+    <a href="/">
+      <img src="/gifs/home.gif" alt="" />
+      <span>Home</span>
+    </a>
+  </div>
+)}

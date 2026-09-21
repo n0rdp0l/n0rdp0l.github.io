@@ -9,6 +9,7 @@ interface Props {
   headerTitle?: string;
   headerSubtitle?: string;
   headerDescription?: string;
+  navVariant?: 'home' | 'page' | 'post';
   transitionName?: string;
 }
 
@@ -17,6 +18,7 @@ const {
   headerTitle,
   headerSubtitle,
   headerDescription,
+  navVariant = 'page',
   transitionName,
 } = Astro.props;
 ---
@@ -28,7 +30,7 @@ const {
     description={headerDescription}
     transitionName={transitionName}
   />
-  <Nav />
   <slot />
+  <Nav variant={navVariant} />
   <Footer />
 </BaseLayout>

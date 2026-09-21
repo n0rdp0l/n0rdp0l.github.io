@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 ---
 
@@ -9,7 +8,11 @@ import Footer from '../components/Footer.astro';
     <h1 class="whoami-path">~/n0rdp0l</h1>
   </div>
 
-  <Nav />
+  <div class="plate-row">
+    <figure class="n0-plate">
+      <img src="/gifs/construction.gif" alt="Under Construction" width="574" height="51" />
+    </figure>
+  </div>
 
   <div class="home">
     <pre class="shell"><span class="shell__prompt">$</span> whoami
@@ -23,7 +26,23 @@ n0rdp0l</pre>
 decentralised-networks
 selfhosting
 arch-linux
-hyprland</pre>
+hyprland
+<span class="shell__prompt">$</span><span class="cursor">_</span></pre>
+  </div>
+
+  <div class="n0-strip">
+    <a href="/blog/">
+      <img src="/gifs/sn_read.gif" alt="" />
+      <span transition:name="blog-title">Blog</span>
+    </a>
+    <a href="/cv/">
+      <img src="/gifs/diplom001.gif" alt="" />
+      <span transition:name="cv-title">Curriculum Vitae</span>
+    </a>
+    <a href="/about/">
+      <img src="/gifs/indexMenuMail.gif" alt="" />
+      <span transition:name="contact-title">Contact</span>
+    </a>
   </div>
 
   <Footer />
@@ -35,7 +54,7 @@ hyprland</pre>
   }
 
   .home {
-    padding: var(--space-7) var(--space-5);
+    padding: 0 var(--space-5) var(--space-7);
   }
 
   .home p {
@@ -43,5 +62,36 @@ hyprland</pre>
     line-height: 1.6;
     color: var(--ink);
     margin: var(--space-5) 0;
+  }
+
+  .n0-strip a {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .n0-strip img {
+    height: 50px;
+  }
+
+  .cursor {
+    animation: blink 1s infinite;
+  }
+
+  @keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+
+  @media (max-width: 800px) {
+    .n0-strip a {
+      flex-direction: column;
+      gap: var(--space-2);
+      text-align: center;
+    }
+
+    .n0-strip img {
+      height: 40px;
+    }
   }
 </style>

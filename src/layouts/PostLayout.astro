@@ -17,6 +17,7 @@ const dateStr = new Date(pubDate).toLocaleDateString('en-US', {
   title={title + ' | n0rdp0l'}
   headerTitle="Blog"
   headerDescription={`"What is essential is invisible to the eye." — Antoine de Saint-Exupéry`}
+  navVariant="post"
 >
   <div class="post-header">
     <h1 transition:name={`post-title-${Astro.url.pathname.split('/').filter(Boolean)[1]}`}>{title}</h1>
