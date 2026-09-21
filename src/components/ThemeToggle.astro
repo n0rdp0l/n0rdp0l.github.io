@@ -21,22 +21,22 @@
     transition: opacity 0.3s, transform 0.3s;
   }
 
-  [data-theme="paper"] .sun {
+  :global([data-theme="paper"]) .sun {
     opacity: 1;
     transform: rotate(0deg);
   }
 
-  [data-theme="paper"] .moon {
+  :global([data-theme="paper"]) .moon {
     opacity: 0;
     transform: rotate(180deg);
   }
 
-  [data-theme="crt"] .sun {
+  :global([data-theme="crt"]) .sun {
     opacity: 0;
     transform: rotate(-180deg);
   }
 
-  [data-theme="crt"] .moon {
+  :global([data-theme="crt"]) .moon {
     opacity: 1;
     transform: rotate(0deg);
   }

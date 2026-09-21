@@ -22,6 +22,20 @@ body {
   margin: 0;
 }
 
+/* Centre the frame in the window while it fits. margin: auto on a flex
+   item falls back to the top once the frame is taller than the window,
+   so nothing is ever clipped. */
+.n0-root {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.n0-frame {
+  margin: auto;
+}
+
 /* ---- The iceberg ------------------------------------------------
    One fixed wallpaper on the canvas, and the same berg as a ghost at
    `veil` inside the frame. Both read --depth (0..1, set from scroll),
