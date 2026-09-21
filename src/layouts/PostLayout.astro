@@ -1,6 +1,7 @@
 ---
 import PageLayout from './PageLayout.astro';
 import ReadingProgress from '../components/ReadingProgress.astro';
+import TagBadge from '../components/TagBadge.astro';
 
 const { frontmatter } = Astro.props;
 const { title, pubDate, tags = [] } = frontmatter;
@@ -15,7 +16,6 @@ const dateStr = new Date(pubDate).toLocaleDateString('en-US', {
 <PageLayout
   title={title + ' | n0rdp0l'}
   headerTitle="Blog"
-  headerSubtitle="Exploring the Latent Space"
   headerDescription={`"What is essential is invisible to the eye." — Antoine de Saint-Exupéry`}
   navVariant="post"
 >
@@ -26,14 +26,12 @@ const dateStr = new Date(pubDate).toLocaleDateString('en-US', {
       {tags.length > 0 && (
         <span>
           &nbsp;·&nbsp;
-          {tags.map((tag: string) => (
-            <a class="tag-badge" href={`/tags/${tag}/`}>{tag}</a>
-          ))}
+          {tags.map((tag: string) => <TagBadge tag={tag} />)}
         </span>
       )}
     </div>
   </div>
-  <div class="prose">
+  <div class="n0-prose">
     <slot />
   </div>
 </PageLayout>

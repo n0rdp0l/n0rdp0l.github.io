@@ -17,12 +17,12 @@ const dateStr = pubDate.toLocaleDateString('en-US', {
 });
 ---
 
-<div class="post-card">
+<div class="n0-card">
   <h3><a href={`/blog/${slug}/`} transition:name={`post-title-${slug}`}>{title}</a></h3>
-  <div class="post-date">{dateStr}</div>
-  <div class="post-description">{description}</div>
+  <p class="n0-card__date">{dateStr}</p>
+  <p class="n0-card__desc">{description}</p>
   {tags.length > 0 && (
-    <div class="post-tags">
+    <div>
       {tags.map((tag) => <TagBadge tag={tag} />)}
     </div>
   )}

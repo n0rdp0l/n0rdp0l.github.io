@@ -1,0 +1,39 @@
+---
+// Sets data-theme before first paint so the page never flashes the wrong
+// ground. Put this in <head>, above the stylesheet links.
+// Older versions of the site stored 'light'/'dark'; those map onto the
+// two themes so returning visitors keep their choice.
+---
+<script is:inline>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem('theme'); } catch (e) {}
+    if (saved === 'light') saved = 'paper';
+    if (saved === 'dark') saved = 'crt';
+    if (saved !== 'paper' && saved !== 'crt') {
+      saved = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'crt' : 'paper';
+    }
+    document.documentElement.setAttribute('data-theme', saved);
+  })();
+</script>
+<script>
+  function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    try { localStorage.setItem('theme', theme); } catch (e) {}
+  }
+  function toggleTheme() {
+    setTheme(document.documentElement.getAttribute('data-theme') === 'crt' ? 'paper' : 'crt');
+  }
+  function wire() {
+    var b = document.getElementById('theme-toggle');
+    if (b) b.addEventListener('click', toggleTheme);
+  }
+  document.addEventListener('astro:page-load', wire);
+  document.addEventListener('astro:after-swap', function () {
+    var saved = null;
+    try { saved = localStorage.getItem('theme'); } catch (e) {}
+    if (saved === 'light') saved = 'paper';
+    if (saved === 'dark') saved = 'crt';
+    if (saved === 'paper' || saved === 'crt') document.documentElement.setAttribute('data-theme', saved);
+  });
+</script>

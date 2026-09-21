@@ -4,36 +4,35 @@ interface Props {
 }
 
 const { variant = 'home' } = Astro.props;
+const path = Astro.url.pathname;
+const current = (href: string) => (path === href ? 'page' : undefined);
 ---
 
 {variant === 'home' ? (
-  <div class="nav">
-    <img src="/gifs/sn_read.gif" alt="Blog" />
-    <a href="/blog/">Blog</a>
-    <img src="/gifs/diplom001.gif" alt="CV" />
-    <a href="/cv/">Curriculum<br />Vitae</a>
-    <img src="/gifs/indexMenuMail.gif" alt="Contact" />
-    <a href="/about/">Contact</a>
+  <div class="n0-strip">
+    <img src="/gifs/sn_read.gif" alt="" />
+    <a href="/blog/" aria-current={current('/blog/')}>Blog</a>
+    <img src="/gifs/diplom001.gif" alt="" />
+    <a href="/cv/" aria-current={current('/cv/')}>Curriculum<br />Vitae</a>
+    <img src="/gifs/indexMenuMail.gif" alt="" />
+    <a href="/about/" aria-current={current('/about/')}>Contact</a>
   </div>
 ) : variant === 'post' ? (
-  <div class="nav nav-post">
-    <div class="nav-item">
-      <a href="/">
-        <img src="/gifs/home.gif" alt="Home" />
-        <span>Home</span>
-      </a>
-    </div>
-    <div class="nav-item">
-      <a href="/blog/">
-        <img src="/gifs/back.gif" alt="Back to Blog" />
-        <span>Back to Blog</span>
-      </a>
-    </div>
+  <div class="n0-strip n0-strip--post">
+    <a href="/">
+      <img src="/gifs/home.gif" alt="" />
+      <span>Home</span>
+    </a>
+    <a href="/blog/">
+      <img src="/gifs/back.gif" alt="" />
+      <span>Back to Blog</span>
+    </a>
   </div>
 ) : (
-  <div class="nav nav-home">
+  <div class="n0-strip n0-strip--post">
     <a href="/">
-      <img src="/gifs/home.gif" alt="Home" />
+      <img src="/gifs/home.gif" alt="" />
+      <span>Home</span>
     </a>
   </div>
 )}

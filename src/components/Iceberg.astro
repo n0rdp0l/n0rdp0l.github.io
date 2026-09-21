@@ -1,0 +1,28 @@
+---
+// The iceberg behind the page. --depth runs 0..1 with the scroll, and
+// global.css maps it onto the berg's vertical position: the top of the
+// page shows the tip, the bottom of the page shows the point.
+---
+<div class="n0-berg" aria-hidden="true"></div>
+
+<script>
+  let queued = false;
+
+  function setDepth() {
+    queued = false;
+    const root = document.documentElement;
+    const track = root.scrollHeight - window.innerHeight;
+    const depth = track > 0 ? Math.min(1, Math.max(0, window.scrollY / track)) : 0;
+    root.style.setProperty('--depth', depth.toFixed(4));
+  }
+
+  function queue() {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(setDepth);
+  }
+
+  window.addEventListener('scroll', queue, { passive: true });
+  window.addEventListener('resize', queue);
+  document.addEventListener('astro:page-load', setDepth);
+</script>

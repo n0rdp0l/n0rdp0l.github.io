@@ -17,13 +17,12 @@ const sortedTags = [...tagCounts.entries()].sort((a, b) => b[1] - a[1]);
 <PageLayout
   title="Tags | n0rdp0l"
   headerTitle="Blog"
-  headerSubtitle="Exploring the Latent Space"
   headerDescription="All tags"
 >
   <h2 class="page-title">Tags</h2>
   <div class="tags-cloud">
     {sortedTags.map(([tag, count]) => (
-      <a class="tag-badge" href={`/tags/${tag}/`}>{tag} ({count})</a>
+      <a class="n0-tag" href={`/tags/${tag}/`}>{tag} ({count})</a>
     ))}
   </div>
 </PageLayout>
