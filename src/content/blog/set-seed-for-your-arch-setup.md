@@ -51,7 +51,10 @@ The open source part made it less of a leap than it sounds. If your day already 
 Python you are already dependent on software maintained in public, already reading source when
 the documentation is thin. Open science asks you to publish the method, not just the finding. A
 machine whose entire configuration is a text file you could publish is the same commitment, one
-layer down.
+layer down. And with all the dotfile templates floating around the internet, it really doesn't
+take that much time to set up a minimal working Arch (Hyprland) setup. It's the same way you'd
+copy the headache of a ggplot syntax and adapt it to your needs, rather than build it from the
+ground up :D
 
 ## The thing I did not want to give up
 
