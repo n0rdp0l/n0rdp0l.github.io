@@ -28,8 +28,8 @@ terminal, a shell and a lock screen that behave identically to the other three b
 
 Steps one and two exist only because I keep secrets in the repo. After the initial set up, if i make a changes to a config file on one machine all i need to run is 
 <div class="n0-term">
-  <div class="n0-term__bar">new machine, from a bare install</div>
-<span class="n0-term__prompt">$</span> chezmoi update 
+  <div class="n0-term__bar">other machines, after a change</div>
+  <pre><span class="n0-term__prompt">$</span> chezmoi update</pre>
 </div>
 
 I want to talk about how I got here, because for a long time I assumed this kind of

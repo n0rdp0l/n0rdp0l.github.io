@@ -153,7 +153,64 @@ body {
   overflow-x: auto;
   font-size: 13px;
   line-height: 1.7;
+  margin: 0;
+}
+
+.n0-prose .code-block {
+  position: relative;
   margin: var(--space-7) 0;
+}
+
+.n0-prose .code-copy {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: var(--space-1) var(--space-3);
+  background: var(--surface-raised);
+  border: var(--border-hair) solid var(--line);
+  color: var(--ink-dim);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s ease-out, color 0.15s ease-out;
+}
+
+.n0-prose .code-block:hover .code-copy,
+.n0-prose .code-copy:focus-visible {
+  opacity: 1;
+}
+
+.n0-prose .code-copy:hover,
+.n0-prose .code-copy:focus-visible {
+  color: var(--accent);
+}
+
+/* Terminal blocks stay dark in both themes, so the button follows them. */
+.n0-prose .code-block > .n0-term {
+  margin: 0;
+}
+
+.n0-prose .code-block > .n0-term ~ .code-copy {
+  background: var(--code-surface);
+  border-color: var(--code-dim);
+  color: var(--code-dim);
+}
+
+.n0-prose .code-block > .n0-term ~ .code-copy:hover,
+.n0-prose .code-block > .n0-term ~ .code-copy:focus-visible {
+  color: var(--code-accent);
+}
+
+@media (hover: none) {
+  .n0-prose .code-copy { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .n0-prose .code-copy { transition: none; }
 }
 
 [data-theme="crt"] .astro-code,

@@ -1,0 +1,53 @@
+---
+---
+
+<script>
+  // Terminal blocks copy only the commands: prompts and comment lines are dropped.
+  function terminalCommands(block: HTMLElement) {
+    const text = block.querySelector('pre')?.innerText ?? '';
+    return text
+      .split('\n')
+      .filter((line) => line.startsWith('$ '))
+      .map((line) => line.slice(2))
+      .join('\n');
+  }
+
+  function addCopyButton(block: HTMLElement, getText: () => string) {
+    if (block.parentElement?.classList.contains('code-block')) return;
+
+    // The block scrolls sideways, so the button lives on a wrapper instead.
+    const wrapper = document.createElement('div');
+    wrapper.className = 'code-block';
+    block.parentNode?.insertBefore(wrapper, block);
+    wrapper.appendChild(block);
+
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'code-copy';
+    button.setAttribute('aria-label', 'Copy code');
+    button.textContent = 'copy';
+    wrapper.appendChild(button);
+
+    button.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(getText());
+        button.textContent = 'copied';
+      } catch {
+        button.textContent = 'failed';
+      }
+      setTimeout(() => (button.textContent = 'copy'), 1500);
+    });
+  }
+
+  function attachCopyButtons() {
+    document.querySelectorAll<HTMLPreElement>('.n0-prose pre.astro-code').forEach((pre) => {
+      addCopyButton(pre, () => pre.querySelector('code')?.innerText ?? pre.innerText);
+    });
+
+    document.querySelectorAll<HTMLElement>('.n0-prose .n0-term').forEach((term) => {
+      addCopyButton(term, () => terminalCommands(term));
+    });
+  }
+
+  document.addEventListener('astro:page-load', attachCopyButtons);
+</script>
