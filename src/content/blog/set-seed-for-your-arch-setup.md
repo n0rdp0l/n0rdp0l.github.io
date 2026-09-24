@@ -26,8 +26,13 @@ Step three installs 71 packages, renders every config file for this specific mac
 the ssh keys, enables six systemd user services, and hands back a window manager, a bar, a
 terminal, a shell and a lock screen that behave identically to the other three boxes.
 
-Steps one and two exist only because I keep secrets in the repo. They are the tax, not the
-method. I want to talk about how I got here, because for a long time I assumed this kind of
+Steps one and two exist only because I keep secrets in the repo. After the initial set up, if i make a changes to a config file on one machine all i need to run is 
+<div class="n0-term">
+  <div class="n0-term__bar">new machine, from a bare install</div>
+<span class="n0-term__prompt">$</span> chezmoi update 
+</div>
+
+I want to talk about how I got here, because for a long time I assumed this kind of
 setup was for people with a computer science degree, and it turns out the opposite is closer to
 true.
 
