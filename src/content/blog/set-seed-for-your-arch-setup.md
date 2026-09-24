@@ -33,11 +33,10 @@ true.
 
 ## Why Arch stopped looking intimidating
 
-My background is econometrics and statistics. For years my mental model of Arch was the one
-everybody has: a distribution for people who enjoy difficulty, who would rather spend a weekend
+My background is econometrics and statistics. For years my mental model of Arch was of a lot of people: a distribution for people who enjoy difficulty, who would rather spend a weekend
 on a display server than open a laptop and work.
 
-Consider what a statistician does reflexively. You do not click through an analysis. You write
+Consider what a statistician does reflexively. You write
 a script. You set a seed. You pin your dependencies, because a result you cannot reproduce on a
 colleague's machine is not a result, it is an anecdote. That is not a taste for difficulty. It
 is a refusal to accept state you did not create and cannot account for.
