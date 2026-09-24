@@ -2,7 +2,7 @@
 title: "set.seed() for your Arch setup"
 description: "How someone from econometrics and statistics sets up and syncs four Arch machines from one chezmoi repo."
 pubDate: 2026-09-22
-tags: ["arch", "chezmoi", "linux", "hyprland", "reproducibility"]
+tags: ["arch", "chezmoi", "linux", "hyprland", "reproducibility", "parsimony"]
 ---
 
 Here is the entire process for bringing up a new machine, whether laptop, desktop, or server:
@@ -34,21 +34,23 @@ Steps one and two exist only because I keep secrets in the repo. After the initi
 I want to talk about how I got here, because for a long time I assumed this kind of
 setup was for people with a computer science degree or hardcore tinkerers.
 
-## Why Arch stopped looking intimidating
+## Why Arch stopped looking like a hobby
 
-My background is econometrics and statistics. For years my mental model of Arch was the one a lot of people have: a distribution for people who enjoy difficulty, who would rather spend a weekend
-on a display server than open a laptop and work.
+My background is econometrics and statistics. For years my mental model of Arch came mostly
+from memes: people who work "I use Arch, btw" into every conversation and would rather spend a
+weekend on a display server than open a laptop and do their work.
 
 Consider what a statistician does reflexively. You write
 a script. You set a seed. You pin your dependencies, because a result you cannot reproduce on a
-colleague's machine is not a result, it is an anecdote. That is not a taste for difficulty. It
+colleague's machine is not a result, it is an anecdote. That is not tinkering for its own sake. It
 is a refusal to accept state you did not create and cannot account for.
 
 Then you go to a general-purpose operating system and accept exactly what you spent your career
 refusing. Something installed a background service. A setting changed after an update. Your
 machine works and you cannot say why. Arch's proposition is narrow and, from that angle, very
 familiar: nothing is installed that you did not ask for, and nothing happens that is not written
-down somewhere you can read. The wiki reads like a methods section.
+down somewhere you can read. The wiki reads like a methods section. The Arch crowd even has a
+name for it, K.I.S.S. (keep it simple, stupid); in statistics we'd just call it parsimony.
 
 The open source part made it less of a leap than it sounds. If your day already runs on R and
 Python you are already dependent on software maintained in public, already reading source when
