@@ -147,6 +147,7 @@
   margin: 0 var(--space-1) var(--space-1) 0;
 }
 .n0-tag:hover { background: var(--accent-fill); color: var(--on-accent-fill); }
+.n0-tag__icon { display: inline-block; width: 1.2em; height: 1.2em; vertical-align: top; fill: currentColor; }
 .n0-tag--quiet { background: transparent; color: var(--accent); border: var(--border-hair) solid var(--line); }
 
 /* ---- Prose ---------------------------------------------------- */

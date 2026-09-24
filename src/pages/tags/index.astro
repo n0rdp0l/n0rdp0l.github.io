@@ -1,5 +1,6 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
+import TagBadge from '../../components/TagBadge.astro';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog')).filter((p) => !p.data.draft);
@@ -22,7 +23,7 @@ const sortedTags = [...tagCounts.entries()].sort((a, b) => b[1] - a[1]);
   <h2 class="page-title">Tags</h2>
   <div class="tags-cloud">
     {sortedTags.map(([tag, count]) => (
-      <a class="n0-tag" href={`/tags/${tag}/`}>{tag} ({count})</a>
+      <TagBadge tag={tag} count={count} />
     ))}
   </div>
 </PageLayout>
