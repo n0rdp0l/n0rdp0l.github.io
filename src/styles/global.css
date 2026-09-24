@@ -287,14 +287,32 @@ figure.n0-plate {
 /* ---- Mobile ------------------------------------------------------- */
 
 @media (max-width: 800px) {
+  /* The berg is sized by height here, well past the screen, so the scroll
+     has room to travel down it. The veil is raised as far as the text
+     allows: at 0.10 `accent` still holds 4.55:1 on the darkest ice. */
+  :root {
+    --berg-size: auto 160vh;
+    --berg-size: auto 160lvh;
+    --veil: 0.10;
+  }
+
+  /* Only ever seen through the wash here, so it takes the plain berg the
+     desktop ghost uses rather than the one multiplied into the night. */
+  [data-theme="crt"] .n0-berg {
+    background-blend-mode: normal;
+  }
+
   .n0-root {
     padding: 0;
   }
 
   /* No canvas shows beside a full-width frame, so let the frame fill the
      screen too: the berg stays a ghost behind the page instead of a loose
-     block under a short one. */
+     block under a short one. Phones ignore background-attachment: fixed,
+     so the frame is only a wash and the fixed .n0-berg layer shows
+     through it. */
   .n0-frame {
+    background: var(--veil-wash);
     width: 100%;
     border-left: 0;
     border-right: 0;
