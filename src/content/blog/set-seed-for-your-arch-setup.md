@@ -57,7 +57,7 @@ the documentation is thin. Open science asks you to publish the method, not just
 machine whose entire configuration is a text file you could publish is the same commitment, one
 layer down. And with all the dotfile templates floating around the internet, it really doesn't
 take that much time to set up a minimal working Arch (Hyprland) setup. It's the same way you'd
-copy the headache of ggplot syntax from some template and adapt it to your needs, rather than build it from the
+copy the  headache-inducing ggplot syntax from some template and adapt it to your needs, rather than build it from the
 ground up.
 
 ## The thing I did not want to give up
