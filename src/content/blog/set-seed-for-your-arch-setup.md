@@ -11,12 +11,12 @@ Here is the entire process for bringing up a new machine, whether laptop, deskto
   <div class="n0-term__bar">new machine, from a bare install</div>
   <pre><span class="n0-term__dim"># 1. authenticate, because the repo is private</span>
 <span class="n0-term__prompt">$</span> gh auth login
-
+<span></span>
 <span class="n0-term__dim"># 2. restore the decryption identity from the password manager</span>
 <span class="n0-term__prompt">$</span> mkdir -p ~/.config/age &amp;&amp; chmod 700 ~/.config/age
 <span class="n0-term__prompt">$</span> wl-paste &gt; ~/.config/age/chezmoi-key.txt
 <span class="n0-term__prompt">$</span> chmod 600 ~/.config/age/chezmoi-key.txt
-
+<span></span>
 <span class="n0-term__dim"># 3. everything else</span>
 <span class="n0-term__prompt">$</span> chezmoi init -<span>-</span>apply https://github.com/n0rdp0l/dotfiles-template.git</pre>
 </div>
