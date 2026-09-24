@@ -1,6 +1,6 @@
 ---
 title: "set.seed() for your Arch setup"
-description: "How someone from econometrics and statistics sets up and syncs four Arch machines from one chezmoi repo, three steps at a time."
+description: "How someone from econometrics and statistics sets up and syncs four Arch machines from one chezmoi repo."
 pubDate: 2026-09-22
 tags: ["arch", "chezmoi", "linux", "hyprland", "reproducibility"]
 ---
@@ -277,10 +277,9 @@ but the shape is the same. One manual act, then convergence.
 ## Leaving room for agents
 
 Every so often something gets promoted from tool to operating system. The current pitch is a
-computer that runs itself, and it sits awkwardly against everything above, which is essentially a
-long argument for machines that do only what is written down.
+computer that runs itself, and it sits awkwardly against everything above.
 
-So I will describe what actually shipped, which is smaller than the genre suggests.
+So I will describe what I actually use.
 
 There is a `CLAUDE.md` in the repo: facts about this setup, one line per rule, the things that
 are easy to get wrong. It is not a personality. It is a README that happens to have a machine as
