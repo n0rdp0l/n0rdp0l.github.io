@@ -3,7 +3,7 @@ title: "set.seed() for your Arch setup"
 description: "How someone from econometrics and statistics sets up and syncs four Arch machines from one chezmoi repo, three steps at a time."
 pubDate: 2026-09-22
 tags: ["arch", "chezmoi", "linux", "hyprland", "reproducibility"]
-draft: true
+draft: false
 ---
 
 Here is the entire process for bringing up a new machine, whether laptop, desktop, or server:
