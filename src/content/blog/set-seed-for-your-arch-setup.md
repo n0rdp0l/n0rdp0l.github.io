@@ -33,8 +33,7 @@ Steps one and two exist only because I keep secrets in the repo. After the initi
 </div>
 
 I want to talk about how I got here, because for a long time I assumed this kind of
-setup was for people with a computer science degree, and it turns out the opposite is closer to
-true.
+setup was for people with a computer science degree or hardcore tinkerers.
 
 ## Why Arch stopped looking intimidating
 
@@ -65,7 +64,7 @@ ground up.
 
 None of that is an argument for suffering, and I want to be honest about the other side.
 
-Apple was good. Not "good if you do not care about control", but genuinely good at the thing I
+Apple was good. That is, good at the thing I
 needed, which was to stop thinking about the computer. Sleep worked. The trackpad worked. Fonts
 were right. Moving to a new Mac was easy too: Migration Assistant carried everything across and
 I was working again the same afternoon. As a scientist that matters. Every hour spent
@@ -74,16 +73,7 @@ lifestyle involves a lot of those hours.
 
 That convenience was exactly what I assumed Linux did not have, and it was the real reason Arch
 looked daunting: the prospect of doing all of it again on the next machine, from memory, and
-getting it subtly wrong.
-
-chezmoi answers that, and it answers it better than a migration tool does. Migration copies the
-state of a machine. chezmoi describes it. A copy gets you working again, but a description is
-something you can read, correct and improve, and it gives everything you learn about the system
-somewhere to live. A fix I work out once is written down where the next machine picks it up on
-its own.
-
-That is the whole design goal, and it is why this post is about a dotfiles manager rather than a
-window manager. Hyprland is the fun part. It is not the part that made this sustainable.
+getting it subtly wrong; chezmoi answers that.
 
 ## What chezmoi actually is
 
