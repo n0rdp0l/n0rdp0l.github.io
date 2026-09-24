@@ -318,9 +318,7 @@ None of this ships enabled. It is a file and a hook in a repo that works identic
 them, which is the only arrangement I trust: the agent gets context, not authority.
 
 Between a template you can clone and a model that can read what it produced, the gap back to the
-Mac I left is more or less closed. The convenience is here, and the decisions are still mine.
-Omarchy is a good answer to the same question, and these days it bills itself as agentic Linux.
-This is the other answer, and its agentic layer is a markdown file and a `case` statement.
+Mac I left is more or less closed, no omarchy needed ;).
 
 ## Three steps
 
