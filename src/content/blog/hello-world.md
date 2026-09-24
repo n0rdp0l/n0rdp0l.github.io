@@ -3,6 +3,7 @@ title: "Hello World"
 description: "First post on the new blog — testing the waters."
 pubDate: 2024-12-01
 tags: ["meta", "intro"]
+draft: true
 ---
 
 Welcome to the blog. This is a test post to make sure everything works.
