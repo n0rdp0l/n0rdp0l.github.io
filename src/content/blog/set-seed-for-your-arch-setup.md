@@ -1,6 +1,6 @@
 ---
 title: "set.seed() for your Arch setup"
-description: "How someone from econometrics and statistics sets up and syncs four Arch machines from one chezmoi repo, three commands at a time."
+description: "How someone from econometrics and statistics sets up and syncs four Arch machines from one chezmoi repo, three steps at a time."
 pubDate: 2026-09-22
 tags: ["arch", "chezmoi", "linux", "hyprland", "reproducibility"]
 draft: true
@@ -26,7 +26,7 @@ Step three installs 71 packages, renders every config file for this specific mac
 the ssh keys, enables six systemd user services, and hands back a window manager, a bar, a
 terminal, a shell and a lock screen that behave identically to the other three boxes.
 
-Steps one and two exist only because I keep secrets in the repo. After the initial set up, if i make a changes to a config file on one machine all i need to run is 
+Steps one and two exist only because I keep secrets in the repo. After the initial setup, if I make a change to a config file on one machine, all I need to run on the others is:
 <div class="n0-term">
   <div class="n0-term__bar">other machines, after a change</div>
   <pre><span class="n0-term__prompt">$</span> chezmoi update</pre>
@@ -37,7 +37,7 @@ setup was for people with a computer science degree or hardcore tinkerers.
 
 ## Why Arch stopped looking intimidating
 
-My background is econometrics and statistics. For years my mental model of Arch was of a lot of people: a distribution for people who enjoy difficulty, who would rather spend a weekend
+My background is econometrics and statistics. For years my mental model of Arch was the one a lot of people have: a distribution for people who enjoy difficulty, who would rather spend a weekend
 on a display server than open a laptop and work.
 
 Consider what a statistician does reflexively. You write
@@ -57,7 +57,7 @@ the documentation is thin. Open science asks you to publish the method, not just
 machine whose entire configuration is a text file you could publish is the same commitment, one
 layer down. And with all the dotfile templates floating around the internet, it really doesn't
 take that much time to set up a minimal working Arch (Hyprland) setup. It's the same way you'd
-copy the headache of a ggplot syntax from some template and adapt it to your needs, rather than build it from the
+copy the headache of ggplot syntax from some template and adapt it to your needs, rather than build it from the
 ground up.
 
 ## The thing I did not want to give up
@@ -73,7 +73,9 @@ lifestyle involves a lot of those hours.
 
 That convenience was exactly what I assumed Linux did not have, and it was the real reason Arch
 looked daunting: the prospect of doing all of it again on the next machine, from memory, and
-getting it subtly wrong; chezmoi answers that.
+getting it subtly wrong; chezmoi answers that. Migration Assistant copies a machine. chezmoi
+describes it, and a description can be read and fixed: a fix I work out once ends up on every
+other machine by itself.
 
 ## What chezmoi actually is
 
@@ -84,7 +86,15 @@ directory. You never edit `~/.config/waybar/config`. You edit the source file, r
 The important idea is that the source directory is not a pile of symlinks. It is a description
 of a desired state, and `apply` is the function that makes reality match the description. If
 you have used `renv` or a lockfile or Terraform, the shape is familiar: declare the end state,
-let the tool work out the diff.
+let the tool work out the diff. One catch: it only converges what it knows about. Delete a
+file from the source and chezmoi just stops managing it, the old copy stays where it was. That
+is what `.chezmoiremove` is for, a short list of files to actively delete.
+
+Day to day it is one command on each end. On the machine where I make the change,
+`chezmoi edit` opens the source file, applies it when I close the editor, and commits and
+pushes it. Every other machine runs `chezmoi update`, which pulls and applies. The server is
+the exception: it only ever pulls, because nothing should be pushing to my repo from a box that
+faces the internet.
 
 Most of the cleverness is in file naming, which does work that would otherwise be a script.
 Here is close to the whole of a barebones Hyprland setup, small enough to read in one sitting:
@@ -125,6 +135,11 @@ That is four behaviours expressed as names rather than as four lines of `chmod` 
 script nobody will maintain, and it is the part I find quietly excellent. The most common
 reason a dotfiles repo rots is that its install script drifts from reality. chezmoi removes the
 install script from the equation.
+
+The scripts that are left follow the same rule. `run_` makes a file a script chezmoi executes, `onchange_` means
+it only reruns when its contents change, and `before_` or `after_` puts it ahead of or behind
+the file writes. The package list next to them in `.chezmoidata/` is not a script at all, just
+YAML that every template can read.
 
 You do not have to start from mine. The dotfiles community is unusually generous with this
 sort of thing, and there are plenty of public chezmoi repos worth reading, several of them more
