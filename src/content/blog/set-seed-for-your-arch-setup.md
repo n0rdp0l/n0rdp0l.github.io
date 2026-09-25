@@ -195,20 +195,22 @@ auth {
 {{ end -}}
 ```
 
-Note the ratio of comment to code. Five lines of explanation for three lines of config, and I
-would keep that trade every time. The config says what; the comment says what breaks without it
-and how I know. Six months from now I am the reviewer, and I will not remember.
+The package list uses the same guard. A laptop gets `fprintd`, the desktop gets `scrcpy` for
+Android work, and neither gets the other's:
 
-The server is the interesting case, because it inverts the default. Almost everything in this
-repo is Arch and Hyprland specific and has no business on a Debian ARM box. The obvious approach
-is a list of exclusions. I do the opposite. Its ignore rules are `**`, ignore everything, plus a
-short list of `!` re-includes for the three shell files it actually wants.
+```go-template
+extra_packages = [
+{{- if eq $hw_type "laptop" -}}
+  "fprintd"
+{{- else if eq $hw_type "desktop" -}}
+  "scrcpy"
+{{- end -}}
+]
+```
 
-That is deliberate, and the reasoning is about failure modes rather than convenience. A
-blocklist fails silently and in the wrong direction: every new desktop file I add reaches the
-server until I remember to exclude it, and I will not remember. A whitelist fails loudly and
-safely: a new file is simply invisible until somebody opts it in. Given the choice between a
-default that leaks and a default that omits, take the one that omits.
+The hyprlock block and the package that makes it work key off the same variable, in two
+different files. There is no way to install the reader driver on a machine whose lock screen
+ignores it, or the reverse, because neither file is asked to remember what the other said.
 
 ## Idempotence, and scripts as a last resort
 
